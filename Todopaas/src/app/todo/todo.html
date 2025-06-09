@@ -1,0 +1,17 @@
+<div class="day-panel">
+  <app-day-selector (dayChanged)="onDayChanged($event)"></app-day-selector>
+</div>
+
+<div class="task-panel">
+  <h2>Tasks for {{ selectedDay }}</h2>
+  <input [(ngModel)]="newTask" (keyup.enter)="addTask()" placeholder="New task" />
+  <button (click)="addTask()">Add</button>
+
+  <ul>
+    <li *ngFor="let todo of todosByDay[selectedDay]; let i = index">
+      <input type="checkbox" [(ngModel)]="todo.done" />
+      {{ todo.text }}
+      <button (click)="deleteTask(i)">Delete</button>
+    </li>
+  </ul>
+</div>
